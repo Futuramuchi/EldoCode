@@ -7,3 +7,8 @@ Solution for "EldoCode" Hackathon
 ## API
 Опубликована на: 'http://eldocode.makievksy.ru.com/'
 
+## Оконное приложение
+Данные для авторизации:
+Login: 142
+Password: 123
+
