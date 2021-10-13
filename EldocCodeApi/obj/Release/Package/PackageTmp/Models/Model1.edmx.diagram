@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="108cd754dde849c2a7b468d4fde95a56" Name="Diagram1" ZoomLevel="74">
+        <EntityTypeShape EntityType="EldoCodeModel.Category" Width="1.5" PointX="3.75" PointY="8.375" />
+        <EntityTypeShape EntityType="EldoCodeModel.Chat" Width="1.5" PointX="10.5" PointY="3.375" />
+        <EntityTypeShape EntityType="EldoCodeModel.Client" Width="1.5" PointX="0.75" PointY="3.375" />
+        <EntityTypeShape EntityType="EldoCodeModel.Country" Width="1.5" PointX="1.5" PointY="23.875" />
+        <EntityTypeShape EntityType="EldoCodeModel.Firm" Width="1.5" PointX="3.75" PointY="10.75" />
+        <EntityTypeShape EntityType="EldoCodeModel.Message" Width="1.5" PointX="6" PointY="3.125" />
+        <EntityTypeShape EntityType="EldoCodeModel.Notification" Width="1.5" PointX="0.75" PointY="26.25" />
+        <EntityTypeShape EntityType="EldoCodeModel.Order" Width="1.5" PointX="3" PointY="2.875" />
+        <EntityTypeShape EntityType="EldoCodeModel.Product" Width="1.5" PointX="6" PointY="8.75" />
+        <EntityTypeShape EntityType="EldoCodeModel.ProductOrder" Width="1.5" PointX="8.25" PointY="3.25" />
+        <EntityTypeShape EntityType="EldoCodeModel.Region" Width="1.5" PointX="1.5" PointY="21.5" />
+        <EntityTypeShape EntityType="EldoCodeModel.Role" Width="1.5" PointX="1.5" PointY="15.125" />
+        <EntityTypeShape EntityType="EldoCodeModel.Status" Width="1.5" PointX="0.75" PointY="6.875" />
+        <EntityTypeShape EntityType="EldoCodeModel.Store" Width="1.5" PointX="1.5" PointY="18.25" />
+        <EntityTypeShape EntityType="EldoCodeModel.sysdiagrams" Width="1.5" PointX="8.75" PointY="6.75" />
+        <EntityTypeShape EntityType="EldoCodeModel.Worker" Width="1.5" PointX="0.75" PointY="10.375" />
+        <AssociationConnector Association="EldoCodeModel.FK_Product_Category" />
+        <AssociationConnector Association="EldoCodeModel.FK_Chat_ProductOrder" />
+        <AssociationConnector Association="EldoCodeModel.FK_Message_Chat" />
+        <AssociationConnector Association="EldoCodeModel.FK_Message_Client" />
+        <AssociationConnector Association="EldoCodeModel.FK_Order_Client1" />
+        <AssociationConnector Association="EldoCodeModel.FK_Store_Country" />
+        <AssociationConnector Association="EldoCodeModel.FK_Product_Firm" />
+        <AssociationConnector Association="EldoCodeModel.FK_Message_Worker" />
+        <AssociationConnector Association="EldoCodeModel.FK_Order_Notification" />
+        <AssociationConnector Association="EldoCodeModel.FK_Order_Status" />
+        <AssociationConnector Association="EldoCodeModel.FK_Order_Worker" />
+        <AssociationConnector Association="EldoCodeModel.FK_ProductOrder_Order" />
+        <AssociationConnector Association="EldoCodeModel.FK_ProductOrder_Product" />
+        <AssociationConnector Association="EldoCodeModel.FK_Store_Region" />
+        <AssociationConnector Association="EldoCodeModel.FK_Worker_Role" />
+        <AssociationConnector Association="EldoCodeModel.FK_Worker_Store" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

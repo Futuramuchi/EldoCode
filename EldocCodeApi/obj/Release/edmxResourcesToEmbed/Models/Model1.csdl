@@ -1,0 +1,462 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="EldoCodeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="EldoCodeEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Category" EntityType="EldoCodeModel.Category" />
+    <EntitySet Name="Chat" EntityType="EldoCodeModel.Chat" />
+    <EntitySet Name="Client" EntityType="EldoCodeModel.Client" />
+    <EntitySet Name="Country" EntityType="EldoCodeModel.Country" />
+    <EntitySet Name="Firm" EntityType="EldoCodeModel.Firm" />
+    <EntitySet Name="Message" EntityType="EldoCodeModel.Message" />
+    <EntitySet Name="Notification" EntityType="EldoCodeModel.Notification" />
+    <EntitySet Name="Order" EntityType="EldoCodeModel.Order" />
+    <EntitySet Name="Product" EntityType="EldoCodeModel.Product" />
+    <EntitySet Name="ProductOrder" EntityType="EldoCodeModel.ProductOrder" />
+    <EntitySet Name="Region" EntityType="EldoCodeModel.Region" />
+    <EntitySet Name="Role" EntityType="EldoCodeModel.Role" />
+    <EntitySet Name="Status" EntityType="EldoCodeModel.Status" />
+    <EntitySet Name="Store" EntityType="EldoCodeModel.Store" />
+    <EntitySet Name="sysdiagrams" EntityType="EldoCodeModel.sysdiagrams" />
+    <EntitySet Name="Worker" EntityType="EldoCodeModel.Worker" />
+    <AssociationSet Name="FK_Product_Category" Association="EldoCodeModel.FK_Product_Category">
+      <End Role="Category" EntitySet="Category" />
+      <End Role="Product" EntitySet="Product" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Chat_ProductOrder" Association="EldoCodeModel.FK_Chat_ProductOrder">
+      <End Role="ProductOrder" EntitySet="ProductOrder" />
+      <End Role="Chat" EntitySet="Chat" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Message_Chat" Association="EldoCodeModel.FK_Message_Chat">
+      <End Role="Chat" EntitySet="Chat" />
+      <End Role="Message" EntitySet="Message" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Message_Client" Association="EldoCodeModel.FK_Message_Client">
+      <End Role="Client" EntitySet="Client" />
+      <End Role="Message" EntitySet="Message" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Order_Client1" Association="EldoCodeModel.FK_Order_Client1">
+      <End Role="Client" EntitySet="Client" />
+      <End Role="Order" EntitySet="Order" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Store_Country" Association="EldoCodeModel.FK_Store_Country">
+      <End Role="Country" EntitySet="Country" />
+      <End Role="Store" EntitySet="Store" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_Firm" Association="EldoCodeModel.FK_Product_Firm">
+      <End Role="Firm" EntitySet="Firm" />
+      <End Role="Product" EntitySet="Product" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Message_Worker" Association="EldoCodeModel.FK_Message_Worker">
+      <End Role="Worker" EntitySet="Worker" />
+      <End Role="Message" EntitySet="Message" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Order_Notification" Association="EldoCodeModel.FK_Order_Notification">
+      <End Role="Notification" EntitySet="Notification" />
+      <End Role="Order" EntitySet="Order" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Order_Status" Association="EldoCodeModel.FK_Order_Status">
+      <End Role="Status" EntitySet="Status" />
+      <End Role="Order" EntitySet="Order" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Order_Worker" Association="EldoCodeModel.FK_Order_Worker">
+      <End Role="Worker" EntitySet="Worker" />
+      <End Role="Order" EntitySet="Order" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductOrder_Order" Association="EldoCodeModel.FK_ProductOrder_Order">
+      <End Role="Order" EntitySet="Order" />
+      <End Role="ProductOrder" EntitySet="ProductOrder" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductOrder_Product" Association="EldoCodeModel.FK_ProductOrder_Product">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="ProductOrder" EntitySet="ProductOrder" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Store_Region" Association="EldoCodeModel.FK_Store_Region">
+      <End Role="Region" EntitySet="Region" />
+      <End Role="Store" EntitySet="Store" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Worker_Role" Association="EldoCodeModel.FK_Worker_Role">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="Worker" EntitySet="Worker" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Worker_Store" Association="EldoCodeModel.FK_Worker_Store">
+      <End Role="Store" EntitySet="Store" />
+      <End Role="Worker" EntitySet="Worker" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Product" Relationship="EldoCodeModel.FK_Product_Category" FromRole="Category" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="Chat">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ProductOrderId" Type="Int32" Nullable="false" />
+    <Property Name="SecretKey" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="ProductOrder" Relationship="EldoCodeModel.FK_Chat_ProductOrder" FromRole="Chat" ToRole="ProductOrder" />
+    <NavigationProperty Name="Message" Relationship="EldoCodeModel.FK_Message_Chat" FromRole="Chat" ToRole="Message" />
+  </EntityType>
+  <EntityType Name="Client">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FirstName" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DateCreated" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Message" Relationship="EldoCodeModel.FK_Message_Client" FromRole="Client" ToRole="Message" />
+    <NavigationProperty Name="Order" Relationship="EldoCodeModel.FK_Order_Client1" FromRole="Client" ToRole="Order" />
+  </EntityType>
+  <EntityType Name="Country">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Store" Relationship="EldoCodeModel.FK_Store_Country" FromRole="Country" ToRole="Store" />
+  </EntityType>
+  <EntityType Name="Firm">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Product" Relationship="EldoCodeModel.FK_Product_Firm" FromRole="Firm" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="Message">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SendDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Text" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ClientId" Type="Int32" />
+    <Property Name="WorkerId" Type="Int32" />
+    <Property Name="ChatId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Chat" Relationship="EldoCodeModel.FK_Message_Chat" FromRole="Message" ToRole="Chat" />
+    <NavigationProperty Name="Client" Relationship="EldoCodeModel.FK_Message_Client" FromRole="Message" ToRole="Client" />
+    <NavigationProperty Name="Worker" Relationship="EldoCodeModel.FK_Message_Worker" FromRole="Message" ToRole="Worker" />
+  </EntityType>
+  <EntityType Name="Notification">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Zone" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Order" Relationship="EldoCodeModel.FK_Order_Notification" FromRole="Notification" ToRole="Order" />
+  </EntityType>
+  <EntityType Name="Order">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="WorkerId" Type="Int32" Nullable="false" />
+    <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="StatusId" Type="Int32" Nullable="false" />
+    <Property Name="NotificationId" Type="Int32" />
+    <Property Name="ClientId" Type="Int32" />
+    <NavigationProperty Name="Client" Relationship="EldoCodeModel.FK_Order_Client1" FromRole="Order" ToRole="Client" />
+    <NavigationProperty Name="Notification" Relationship="EldoCodeModel.FK_Order_Notification" FromRole="Order" ToRole="Notification" />
+    <NavigationProperty Name="Status" Relationship="EldoCodeModel.FK_Order_Status" FromRole="Order" ToRole="Status" />
+    <NavigationProperty Name="Worker" Relationship="EldoCodeModel.FK_Order_Worker" FromRole="Order" ToRole="Worker" />
+    <NavigationProperty Name="ProductOrder" Relationship="EldoCodeModel.FK_ProductOrder_Order" FromRole="Order" ToRole="ProductOrder" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="VendorCode" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="CategoryId" Type="Int32" Nullable="false" />
+    <Property Name="FirmId" Type="Int32" />
+    <Property Name="Photo" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="Price" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Category" Relationship="EldoCodeModel.FK_Product_Category" FromRole="Product" ToRole="Category" />
+    <NavigationProperty Name="Firm" Relationship="EldoCodeModel.FK_Product_Firm" FromRole="Product" ToRole="Firm" />
+    <NavigationProperty Name="ProductOrder" Relationship="EldoCodeModel.FK_ProductOrder_Product" FromRole="Product" ToRole="ProductOrder" />
+  </EntityType>
+  <EntityType Name="ProductOrder">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProductId" Type="Int32" Nullable="false" />
+    <Property Name="OrderId" Type="Int32" Nullable="false" />
+    <Property Name="Amount" Type="Int32" Nullable="false" />
+    <Property Name="SecretKey" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Chat" Relationship="EldoCodeModel.FK_Chat_ProductOrder" FromRole="ProductOrder" ToRole="Chat" />
+    <NavigationProperty Name="Order" Relationship="EldoCodeModel.FK_ProductOrder_Order" FromRole="ProductOrder" ToRole="Order" />
+    <NavigationProperty Name="Product" Relationship="EldoCodeModel.FK_ProductOrder_Product" FromRole="ProductOrder" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="Region">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Store" Relationship="EldoCodeModel.FK_Store_Region" FromRole="Region" ToRole="Store" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Worker" Relationship="EldoCodeModel.FK_Worker_Role" FromRole="Role" ToRole="Worker" />
+  </EntityType>
+  <EntityType Name="Status">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Order" Relationship="EldoCodeModel.FK_Order_Status" FromRole="Status" ToRole="Order" />
+  </EntityType>
+  <EntityType Name="Store">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Address" Type="String" Nullable="false" MaxLength="400" FixedLength="false" Unicode="true" />
+    <Property Name="CountryId" Type="Int32" Nullable="false" />
+    <Property Name="RegionId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Country" Relationship="EldoCodeModel.FK_Store_Country" FromRole="Store" ToRole="Country" />
+    <NavigationProperty Name="Region" Relationship="EldoCodeModel.FK_Store_Region" FromRole="Store" ToRole="Region" />
+    <NavigationProperty Name="Worker" Relationship="EldoCodeModel.FK_Worker_Store" FromRole="Store" ToRole="Worker" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Worker">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FirstName" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="MiddleName" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="LastName" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="Login" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+    <Property Name="StoreId" Type="Int32" Nullable="false" />
+    <Property Name="RoleId" Type="Int32" />
+    <Property Name="Photo" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <NavigationProperty Name="Message" Relationship="EldoCodeModel.FK_Message_Worker" FromRole="Worker" ToRole="Message" />
+    <NavigationProperty Name="Order" Relationship="EldoCodeModel.FK_Order_Worker" FromRole="Worker" ToRole="Order" />
+    <NavigationProperty Name="Role" Relationship="EldoCodeModel.FK_Worker_Role" FromRole="Worker" ToRole="Role" />
+    <NavigationProperty Name="Store" Relationship="EldoCodeModel.FK_Worker_Store" FromRole="Worker" ToRole="Store" />
+  </EntityType>
+  <Association Name="FK_Product_Category">
+    <End Type="EldoCodeModel.Category" Role="Category" Multiplicity="1" />
+    <End Type="EldoCodeModel.Product" Role="Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="CategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Chat_ProductOrder">
+    <End Type="EldoCodeModel.ProductOrder" Role="ProductOrder" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="EldoCodeModel.Chat" Role="Chat" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProductOrder">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Chat">
+        <PropertyRef Name="ProductOrderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Message_Chat">
+    <End Type="EldoCodeModel.Chat" Role="Chat" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="EldoCodeModel.Message" Role="Message" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Chat">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Message">
+        <PropertyRef Name="ChatId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Message_Client">
+    <End Type="EldoCodeModel.Client" Role="Client" Multiplicity="0..1" />
+    <End Type="EldoCodeModel.Message" Role="Message" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Client">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Message">
+        <PropertyRef Name="ClientId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Order_Client1">
+    <End Type="EldoCodeModel.Client" Role="Client" Multiplicity="0..1" />
+    <End Type="EldoCodeModel.Order" Role="Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Client">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="ClientId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Store_Country">
+    <End Type="EldoCodeModel.Country" Role="Country" Multiplicity="1" />
+    <End Type="EldoCodeModel.Store" Role="Store" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Store">
+        <PropertyRef Name="CountryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Product_Firm">
+    <End Type="EldoCodeModel.Firm" Role="Firm" Multiplicity="0..1" />
+    <End Type="EldoCodeModel.Product" Role="Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Firm">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="FirmId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Message_Worker">
+    <End Type="EldoCodeModel.Worker" Role="Worker" Multiplicity="0..1" />
+    <End Type="EldoCodeModel.Message" Role="Message" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Worker">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Message">
+        <PropertyRef Name="WorkerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Order_Notification">
+    <End Type="EldoCodeModel.Notification" Role="Notification" Multiplicity="0..1" />
+    <End Type="EldoCodeModel.Order" Role="Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Notification">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="NotificationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Order_Status">
+    <End Type="EldoCodeModel.Status" Role="Status" Multiplicity="1" />
+    <End Type="EldoCodeModel.Order" Role="Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Status">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="StatusId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Order_Worker">
+    <End Type="EldoCodeModel.Worker" Role="Worker" Multiplicity="1" />
+    <End Type="EldoCodeModel.Order" Role="Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Worker">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="WorkerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductOrder_Order">
+    <End Type="EldoCodeModel.Order" Role="Order" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="EldoCodeModel.ProductOrder" Role="ProductOrder" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Order">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProductOrder">
+        <PropertyRef Name="OrderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductOrder_Product">
+    <End Type="EldoCodeModel.Product" Role="Product" Multiplicity="1" />
+    <End Type="EldoCodeModel.ProductOrder" Role="ProductOrder" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProductOrder">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Store_Region">
+    <End Type="EldoCodeModel.Region" Role="Region" Multiplicity="1" />
+    <End Type="EldoCodeModel.Store" Role="Store" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Region">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Store">
+        <PropertyRef Name="RegionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Worker_Role">
+    <End Type="EldoCodeModel.Role" Role="Role" Multiplicity="0..1" />
+    <End Type="EldoCodeModel.Worker" Role="Worker" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Worker">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Worker_Store">
+    <End Type="EldoCodeModel.Store" Role="Store" Multiplicity="1" />
+    <End Type="EldoCodeModel.Worker" Role="Worker" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Store">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Worker">
+        <PropertyRef Name="StoreId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
