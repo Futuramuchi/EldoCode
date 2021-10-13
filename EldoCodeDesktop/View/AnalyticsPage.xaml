@@ -1,0 +1,357 @@
+﻿<Page x:Class="EldoCodeDesktop.View.AnalyticsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:oxy="http://oxyplot.org/wpf"
+      xmlns:local="clr-namespace:EldoCodeDesktop.AppData"
+      Title="Аналитика"
+      Width="900"
+      Height="750">
+
+
+    <Page.DataContext>
+        <local:Graph/>
+    </Page.DataContext>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="8*"/>
+            <ColumnDefinition Width="4.5*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="4*"/>
+            <RowDefinition Height="6*"/>
+            <RowDefinition Height="5*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.ColumnSpan="2"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Top"
+                    Margin="5 25 5 5">
+            <TextBlock Text="Анализ"
+                       Style="{StaticResource TxbTitle}"/>
+            <StackPanel Orientation="Horizontal">
+                <Border CornerRadius="5"
+                        Margin="5"
+                        Width="200"
+                        Height="120"
+                        Background="White"
+                        Padding="5">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Text="Клиенты"
+                                   Style="{StaticResource TxbListBlack}"
+                                   FontWeight="SemiBold"
+                                   VerticalAlignment="Bottom"
+                                   HorizontalAlignment="Left"/>
+                        <Image Source="/Resources/person.png"
+                               HorizontalAlignment="Right"
+                               Width="30"/>
+                        <TextBlock Name="TxtAmount"
+                                   Style="{StaticResource TxbListBlack}"
+                                   Grid.Row="1"
+                                   HorizontalAlignment="Left"/>
+                        <TextBlock Grid.Row="2"
+                                   Style="{StaticResource TxbListBlack}"
+                                   HorizontalAlignment="Left">
+                            <Run Name="TxtAmountPlus"
+                                 Foreground="#72BE44"/>
+                            <Run Text="с прошлого месяца"/>
+                        </TextBlock>
+                    </Grid>
+                    <Border.Effect>
+                        <DropShadowEffect BlurRadius="10" Opacity="0.1"/>
+                    </Border.Effect>
+                </Border>
+                <Border CornerRadius="5"
+                        Margin="5"
+                        Width="200"
+                        Height="120"
+                        Background="White"
+                        Padding="5">
+                    <Border.Effect>
+                        <DropShadowEffect BlurRadius="10" Opacity="0.1"/>
+                    </Border.Effect>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Text="Доход"
+                                   Style="{StaticResource TxbListBlack}"
+                                   FontWeight="SemiBold"
+                                   VerticalAlignment="Bottom"
+                                   HorizontalAlignment="Left"/>
+                        <Image Source="/Resources/ruble.png"
+                               HorizontalAlignment="Right"
+                               Width="30"/>
+                        <TextBlock Name="TxtIncomeAmount"
+                                   Style="{StaticResource TxbListBlack}"
+                                   Grid.Row="1"
+                                   HorizontalAlignment="Left"/>
+                        <TextBlock Grid.Row="2"
+                                   Style="{StaticResource TxbListBlack}"
+                                   HorizontalAlignment="Left">
+                            <Run Name="TxtIncomeAmountPlus"
+                                 Foreground="#72BE44"/>
+                            <Run Text="с прошлого месяца"/>
+                        </TextBlock>
+                    </Grid>
+                </Border>
+                <Border CornerRadius="5"
+                        Margin="5"
+                        Height="120"
+                        Width="200"
+                        Background="White"
+                        Padding="5">
+                    <Border.Effect>
+                        <DropShadowEffect BlurRadius="10" Opacity="0.1"/>
+                    </Border.Effect>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Text="Заказы"
+                                   Style="{StaticResource TxbListBlack}"
+                                   FontWeight="SemiBold"
+                                   VerticalAlignment="Bottom"
+                                   HorizontalAlignment="Left"/>
+                        <Image Source="/Resources/store.png"
+                               HorizontalAlignment="Right"
+                               Width="30"/>
+                        <TextBlock Name="TxtOrderAmount"
+                                   Style="{StaticResource TxbListBlack}"
+                                   Grid.Row="1"
+                                   HorizontalAlignment="Left"/>
+                        <TextBlock Grid.Row="2"
+                                   Style="{StaticResource TxbListBlack}"
+                                   HorizontalAlignment="Left">
+                            <Run Name="TxtOrderAmountPlus"
+                                 Foreground="#72BE44"/>
+                            <Run Text="с прошлого месяца"/>
+                        </TextBlock>
+                    </Grid>
+                </Border>
+                <Border CornerRadius="5"
+                        Margin="5"
+                        Height="120"
+                        Width="200"
+                        Background="White"
+                        Padding="5">
+                    <Border.Effect>
+                        <DropShadowEffect BlurRadius="10" Opacity="0.1"/>
+                    </Border.Effect>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Text="Проданные товары"
+                                   Style="{StaticResource TxbListBlack}"
+                                   FontWeight="SemiBold"
+                                   VerticalAlignment="Bottom"
+                                   HorizontalAlignment="Left"/>
+                        <Image Source="/Resources/order.png"
+                               HorizontalAlignment="Right"
+                               Width="30"/>
+                        <TextBlock Name="TxtSellAmount"
+                                   Style="{StaticResource TxbListBlack}"
+                                   Grid.Row="1"
+                                   HorizontalAlignment="Left"/>
+                        <TextBlock Grid.Row="2"
+                                   Style="{StaticResource TxbListBlack}"
+                                   HorizontalAlignment="Left">
+                            <Run Name="TxtSellAmountPlus"
+                                 Foreground="#72BE44"/>
+                            <Run Text="с прошлого месяца"/>
+                        </TextBlock>
+                    </Grid>
+                </Border>
+            </StackPanel>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1"
+                     Margin="30 5 5 5">
+            <TextBlock Text="Доход"
+                       Style="{StaticResource TxbTitle}"/>
+            <Border
+                CornerRadius="5"
+                Background="White"
+                Padding="10"
+                Width="531"
+                Height="200"
+                Margin="5,5,0,5"
+                HorizontalAlignment="Left">
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="10" Opacity="0.1"/>
+                </Border.Effect>
+                <Grid>
+                    <oxy:Plot Background="Transparent"
+                          Grid.Row="1"
+                      FontFamily="Roboto" FontSize="13">
+                        <oxy:Plot.Axes>
+                            <oxy:CategoryAxis Position="Bottom" Labels="{Binding Months}" Angle="-60"/>
+                        </oxy:Plot.Axes>
+                        <oxy:LineSeries ItemsSource="{Binding Data}"/>
+                    </oxy:Plot>
+                </Grid>
+            </Border>
+        </StackPanel>
+
+
+        <StackPanel Grid.ColumnSpan="2"
+                Grid.Row="2"
+                Margin="30 5 5 5">
+            <TextBlock Text="Самые продаваемые товары"
+                       Style="{StaticResource TxbTitle}"/>
+            <Border CornerRadius="5"
+                Background="#F6F6F6"
+                    Margin="5">
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="10" Opacity="0.1"/>
+                </Border.Effect>
+                <Grid>
+                    <ListView 
+                          BorderBrush="Transparent"
+                          Margin="3"
+                    Height="190"
+                          ItemsSource="{Binding TopProduct}"
+                          Background="Transparent"
+                          Style="{StaticResource ListDef}"
+                          Focusable="False"
+                          Name="ListProduct"
+                          ScrollViewer.VerticalScrollBarVisibility="Hidden">
+                        <ListView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel Orientation="Horizontal"/>
+                            </ItemsPanelTemplate>
+                        </ListView.ItemsPanel>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Border CornerRadius="5"
+                                    Width="200"
+                                    Height="100"
+                                    Background="White">
+                                    <Border.Effect>
+                                        <DropShadowEffect BlurRadius="10" Opacity="0.1"/>
+                                    </Border.Effect>
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="2*"/>
+                                            <RowDefinition Height="2*"/>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="2*"/>
+                                            <ColumnDefinition Width="4*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Image Width="55"
+                                           Grid.RowSpan="2"
+                                           Margin="5"
+                                           Source="{Binding GetPhoto}">
+                                        </Image>
+                                        <TextBlock Grid.Column="1"
+                                               FontWeight="SemiBold"
+                                               VerticalAlignment="Center"
+                                               Text="{Binding Product.Name}"
+                                               TextWrapping="Wrap"/>
+                                        <TextBlock Grid.Row="1"
+                                               VerticalAlignment="Top"
+                                               Grid.Column="1"
+                                               Text="{Binding Product.Price}"/>
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </Grid>
+            </Border>
+        </StackPanel>
+
+        <Border Grid.Column="1"
+                Grid.Row="1"
+                Margin="5,44,5,5"
+                CornerRadius="5"
+                Background="White">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="10" Opacity="0.1"/>
+            </Border.Effect>
+            <Grid Margin="0,0,0,22">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1.2*"/>
+                    <RowDefinition Height="5*"/>
+                    <RowDefinition Height="4*"/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="Доход по местоположению"
+                           FontWeight="SemiBold"
+                           Style="{StaticResource TxbListBlack}"/>
+
+                <Image Source="/Resources/country.png"
+                       Grid.Row="1"/>
+                <Ellipse Fill="#E31235"
+                         Grid.Row="1"
+                         Width="10"
+                         Height="10" Margin="108,45,196,53"/>
+                <StackPanel Grid.Row="2"
+                            Margin="5">
+                    <ListView Style="{StaticResource ListDef}"
+                              Name="ListRate"
+                              Margin="5"
+                              ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+                              ItemsSource="{Binding CountryRate}"
+                              Background="Transparent"
+                              BorderBrush="Transparent">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                    </Grid.RowDefinitions>
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="6*"/>
+                                        <ColumnDefinition Width="1.5*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <TextBlock Grid.Row="0"
+                                               Grid.ColumnSpan="2"
+                                               Margin="3"
+                                               Text="{Binding Order.Worker.Store.Region.Name}"/>
+
+                                    <StackPanel Width="{Binding GetTotalWidth}"                                                
+                                                Background="LightGray"
+                                                Height="10"
+                                                Margin="3"
+                                                Grid.Row="1">
+                                        <StackPanel Name="SpFirstRate"
+                                            Orientation="Horizontal"
+                                                    HorizontalAlignment="Left"
+                                                    Width="{Binding GetWidth}"
+                                                    Height="10"
+                                                    Background="#E31235"/>
+                                    </StackPanel>
+                                    <TextBlock Name="TxtFirstRate"
+                                               Grid.Column="1"
+                                               Margin="3"
+                                               Grid.Row="1"
+                                               VerticalAlignment="Center"
+                                               Text="{Binding GetCurrentIncome}"/>
+                                </Grid>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackPanel>
+            </Grid>
+        </Border>
+    </Grid>
+</Page>

@@ -1,0 +1,110 @@
+﻿<Window x:Class="EldoCodeDesktop.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EldoCodeDesktop" xmlns:viewmodel="clr-namespace:EldoCodeDesktop.ViewModel"
+        d:DataContext="{d:DesignInstance Type=viewmodel:AuthVM}"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="500" Width="600"
+        ResizeMode="NoResize"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Background="Transparent"
+        WindowStartupLocation="CenterScreen"        
+        MouseLeftButtonDown="Window_MouseLeftButtonDown"
+        Icon="/Resources/icon.ico">
+
+    <Border CornerRadius="20"
+            Background="White">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.8*"/>
+                <RowDefinition Height="10*"/>
+            </Grid.RowDefinitions>
+
+            <StackPanel HorizontalAlignment="Right"
+                        Orientation="Horizontal"
+                        Margin="0 0 20 0">
+                <Button Height="15" Width="15"
+                        Margin="5"
+                        Name="BtnRoll"
+                        Click="BtnRoll_Click">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border x:Name="Bd" Background="Transparent"
+                                    CornerRadius="15">
+                                <Path x:Name="Pt" Data="M 10,10 L 20,10"
+                      Stretch="Uniform" Stroke="Black" StrokeThickness="2"/>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter TargetName="Bd" Property="Background" Value="#72BE44"/>
+                                    <Setter TargetName="Pt" Property="Stroke" Value="White"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+                <Button Height="15" Width="15"
+                        Margin="5"
+                        Name="BtnClose"
+                        Click="BtnClose_Click">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border x:Name="Bd" Background="Transparent"
+                                    CornerRadius="15">
+                                <Path x:Name="Pt" Data="M0,0 M0.2,0.2 L 0.8,0.8 M0.2,0.8 L0.8,0.2 M1,1"
+                      Stretch="Uniform" Stroke="Black" StrokeThickness="2"/>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter TargetName="Bd" Property="Background" Value="#72BE44"/>
+                                    <Setter TargetName="Pt" Property="Stroke" Value="White"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+            </StackPanel>
+
+            <StackPanel Grid.Row="1"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center">
+                <Image Source="/Resources/logo.png"
+                       Width="250"
+                       Margin="10"/>
+                <TextBlock Text="Авторизация"
+                           Style="{StaticResource TxbTitle}"
+                           HorizontalAlignment="Center"/>
+                <TextBlock Text="Логин:"
+                           Style="{StaticResource TxbDef}"/>
+                <TextBox Name="TxtLogin"
+                         Margin="5"
+                         Padding="2"
+                         Text="{Binding Login}"
+                         FontSize="18"
+                         FontFamily="Roboto"
+                         Template="{DynamicResource TxtAuthStyle}"/>
+                <TextBlock Text="Пароль:"
+                           Style="{StaticResource TxbDef}"/>
+                <PasswordBox Name="TxtPassword"
+                             Margin="5"
+                             Padding="2"
+                             PasswordChanged="TxtPassword_PasswordChanged"
+                         FontSize="18"
+                         FontFamily="Roboto"
+                             Template="{DynamicResource TxtPassAuthStyle}"/>
+                <Button Name="BtnEnter"
+                        FontSize="15"
+                        Margin="5 14 5 5"
+                        IsDefault="True"
+                        Command="{Binding Authorisation}"
+                        Style="{DynamicResource DefBtnStyle}">Войти</Button>
+                <TextBlock Name="TxtByte"/>
+                <Image Width="100"
+                       Name="ImgTest"/>
+            </StackPanel>
+        </Grid>
+    </Border>
+</Window>
